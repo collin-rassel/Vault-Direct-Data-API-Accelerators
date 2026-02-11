@@ -12,8 +12,8 @@
     "account_url": "https://bdaze1imqdl01.blob.core.windows.net/",
     "container": "veeva-vault",
     "direct_data_folder": "direct-data",
-    "archive_filepath": "direct-data/56480-20260125-0015-N.tar.gz",
-    "extract_folder": "56480-20260125-0015-N",
+    "archive_filepath": "direct-data/56480-20260211-0000-F.tar.gz", 
+    "extract_folder": "56480-20260211-0000-F",
     "document_content_folder": "document_content",
     "document_text_folder": "document_text"
   },

@@ -31,21 +31,18 @@ def main():
     databricks_params['object_storage_root'] = object_storage_root
 
     blob_service: AzureBlobService = AzureBlobService(blob_params)
-    #databricks_service: DatabricksService = DatabricksService(databricks_params)
+    databricks_service: DatabricksService = DatabricksService(databricks_params)
     vault_service: VaultService = VaultService(vapil_settings_filepath)
     
     direct_data_to_object_storage.run(vault_service=vault_service,
                                       object_storage_service=blob_service,
                                       direct_data_params=direct_data_params)
-    log_message(log_level='Info',
-                message=f'---Moving into download and unzip---')
-    download_and_unzip_direct_data_files.run(object_storage_service=blob_service)
-    # print("successfully downloaded and unzipped direct data files")
 
-    # load_data.run(object_storage_service=blob_service,
-    #               database_service=databricks_service,
-    #               direct_data_params=direct_data_params)
-    # print("successfully loaded data to the Lakehouse")
+    download_and_unzip_direct_data_files.run(object_storage_service=blob_service)
+
+    load_data.run(object_storage_service=blob_service,
+                  database_service=databricks_service,
+                  direct_data_params=direct_data_params)
 
     # if extract_document_content:
     #     extract_doc_content.run(object_storage_service=blob_service,
