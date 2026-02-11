@@ -3,9 +3,9 @@
   "extract_document_content" : false,
   "retrieve_document_text" : false,
   "direct_data": {
-    "start_time": "2026-02-04T10:00Z",
-    "stop_time": "2026-02-04T11:00Z",
-    "extract_type": "incremental"
+    "start_time": "2000-01-01T00:00Z",
+    "stop_time": "2026-02-11T00:00Z",
+    "extract_type": "full"
   },
   "blob": {
     "role": "Azure-Role", 
@@ -23,8 +23,7 @@
     "external_storage": "veeva-direct-test",
     "infer_schema": false,
     "server_hostname": "adb-4535613467277373.13.azuredatabricks.net",
-    "http_path": "sql/protocolv1/o/4535613467277373/0122-083417-2i8xcrud",
-    "access_token": null
+    "http_path": "/sql/1.0/warehouses/30d1b6d3b268ad27"
   }
 }
  
