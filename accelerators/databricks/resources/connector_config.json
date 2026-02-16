@@ -4,7 +4,7 @@
   "retrieve_document_text" : false,
   "direct_data": {
     "start_time": "2000-01-01T00:00Z",
-    "stop_time": "2026-02-11T00:00Z",
+    
     "extract_type": "full"
   },
   "blob": {
@@ -12,8 +12,8 @@
     "account_url": "https://bdaze1imqdl01.blob.core.windows.net/",
     "container": "veeva-vault",
     "direct_data_folder": "direct-data",
-    "archive_filepath": "direct-data/56480-20260211-0000-F.tar.gz", 
-    "extract_folder": "56480-20260211-0000-F",
+    
+    
     "document_content_folder": "document_content",
     "document_text_folder": "document_text"
   },

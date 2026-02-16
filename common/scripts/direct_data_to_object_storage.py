@@ -53,6 +53,20 @@ def _handle_multipart_upload(object_storage_service: ObjectStorageService, vault
                     exception=e)
         raise e
 
+def get_file_name(vault_service: VaultService, direct_data_params: dict):
+    extract_type: str = f"{direct_data_params['extract_type']}_directdata"
+    start_time: str = direct_data_params['start_time']
+    stop_time: str = direct_data_params['stop_time']
+    list_direct_data_files_response: DirectDataResponse = vault_service.retrieve_available_direct_data_files(
+            extract_type=extract_type,
+            start_time=start_time,
+            stop_time=stop_time
+        )
+    
+    # Download the latest Direct Data file in the response, and upload to file storage.
+    direct_data_item: DirectDataResponse.DirectDataItem = list_direct_data_files_response.data[-1]
+    
+    return direct_data_item.filename
 
 def run(vault_service: VaultService, object_storage_service: ObjectStorageService, direct_data_params: dict):
     log_message(log_level='Info',

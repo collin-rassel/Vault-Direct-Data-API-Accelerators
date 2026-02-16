@@ -191,6 +191,8 @@ def run(object_storage_service: ObjectStorageService, database_service: Database
 
         # Retrieve the Manifest File from Object Storage
         manifest_filepath: str = f"{starting_directory}/manifest{file_extension}"
+        log_message(log_level='Info',
+                message=f'---Manifest file retrieved: {manifest_filepath}---')
         object_storage_service.check_if_object_exists(object_path=manifest_filepath)
         object_storage_service.download_object_to_local(object_path=manifest_filepath, output_path=manifest_filepath)
 
@@ -205,6 +207,8 @@ def run(object_storage_service: ObjectStorageService, database_service: Database
                 if extract_type == "full"
                 else f"{starting_directory}/metadata_full{file_extension}"
             )
+            log_message(log_level='Info',
+                message=f'---Metadata file retrieved: {metadata_filepath}---')
             object_storage_service.check_if_object_exists(object_path=metadata_filepath)
             object_storage_service.download_object_to_local(metadata_filepath, metadata_filepath)
 
