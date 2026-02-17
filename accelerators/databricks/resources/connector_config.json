@@ -1,5 +1,5 @@
 {
-  "convert_to_parquet": true,
+  "convert_to_parquet": false,
   "extract_document_content" : false,
   "retrieve_document_text" : false,
   "direct_data": {
@@ -13,7 +13,7 @@
     "container": "veeva-vault",
     "direct_data_folder": "direct-data",
     
-    
+
     "document_content_folder": "document_content",
     "document_text_folder": "document_text"
   },
@@ -24,6 +24,7 @@
     "infer_schema": false,
     "server_hostname": "adb-4535613467277373.13.azuredatabricks.net",
     "http_path": "/sql/1.0/warehouses/30d1b6d3b268ad27"
+    
   }
 }
  

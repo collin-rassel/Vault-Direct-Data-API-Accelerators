@@ -257,17 +257,26 @@ class DatabricksService(DatabaseService):
 
     def load_full_or_log_data(self, table_name: str, object_path: str, headers: list = None):
         file_format_name: str = "PARQUET" if self.convert_to_parquet else "CSV"
-        if self.convert_to_parquet:
-            self.db_connection.execute_query(f"""
-                    CREATE TABLE IF NOT EXISTS {self.schema}.{table_name}
-                    USING DELTA
-                    AS SELECT * FROM parquet.`{object_path}` 
-                    LIMIT 0;
-                """)
+        volume_path = "/Volumes/manufacturing_quality_dev/veeva_quality_raw/veeva-direct-data/" + object_path.split("veeva-vault/")[1]
+        # if self.convert_to_parquet:
+        #     volume_path = object_path.split("veeva-vault/")[1]
+        #     self.db_connection.execute_query(f"""
+        #             CREATE TABLE IF NOT EXISTS {self.schema}.{table_name}
+        #             USING DELTA
+        #             AS SELECT * FROM read_files(/Volumes/veeva-direct-data/`{volume_path}`,
+        #             format=>'parquet')
+        #             LIMIT 0;
+        #         """)
+            # self.db_connection.execute_query(f"""f
+            #         CREATE TABLE IF NOT EXISTS {self.schema}.{table_name}
+            #         USING DELTA
+            #         AS SELECT * FROM parquet.`{object_path}` 
+            #         LIMIT 0;
+            #     """)
 
         self.db_connection.execute_query(f"""
                         COPY INTO {self.schema}.{table_name}
-                        FROM '{object_path}'
+                        FROM '{volume_path}'
                         FILEFORMAT = {file_format_name}
                         FORMAT_OPTIONS ('inferSchema' ='{self.infer_schema}',
                                         'delimiter' = ',',

@@ -158,6 +158,8 @@ def load_data_into_tables(database_service: DatabaseService,
                           table_name: str,
                           filename: str):
     full_object_path: str = object_storage_service.get_full_object_path(filename=filename)
+    log_message(log_level='Info',
+                message=f'Loading data into table: {table_name} from file: {full_object_path}')
     relative_object_path: str = object_storage_service.get_relative_object_path(filename=filename)
     headers: list[str] | None = None
     if database_service.convert_to_parquet:
